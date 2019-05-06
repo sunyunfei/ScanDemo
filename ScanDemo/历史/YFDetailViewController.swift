@@ -27,7 +27,7 @@ class YFDetailViewController: UIViewController,UITableViewDelegate,UITableViewDa
     //加载表视图
     func loadTableView() ->Void{
     
-        tableView = UITableView.init(frame: CGRect.init(x: 0, y: 64, width: self.view.frame.size.width, height: self.view.frame.size.height - 64), style: .grouped)
+        tableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), style: .grouped)
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cell")
@@ -67,7 +67,7 @@ class YFDetailViewController: UIViewController,UITableViewDelegate,UITableViewDa
         if indexPath.section == 0{
         
             //计算高度
-            let size:CGSize = (urlModel?.urlStr!.boundingRect(with: CGSize.init(width: self.view.frame.size.width - 16, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 15)], context: nil).size)!
+            let size:CGSize = (urlModel?.urlStr!.boundingRect(with: CGSize.init(width: self.view.frame.size.width - 16, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 15)], context: nil).size)!
             
             return size.height + 16;
         }else{

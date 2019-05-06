@@ -12,14 +12,15 @@ class YFSetViewController: UITableViewController,SKStoreProductViewControllerDel
 
     @IBOutlet weak var shakeLabel: UILabel!//提示是否震动label
     @IBOutlet weak var shakeSwitch: UISwitch!//开关
-    @IBOutlet weak var versionLabel: UILabel!//版本
+    var activityView:UIActivityIndicatorView?
+    var activityBgView:UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //获取版本号
-        let dic:Dictionary = Bundle.main.infoDictionary!
-        let versionStr = "版本号:" + (dic["CFBundleShortVersionString"]! as! String)
-        versionLabel.text = versionStr
+//        let dic:Dictionary = Bundle.main.infoDictionary!
+//        let versionStr = "版本号:" + (dic["CFBundleShortVersionString"]! as! String)
+//        versionLabel.text = versionStr
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +41,15 @@ class YFSetViewController: UITableViewController,SKStoreProductViewControllerDel
     @IBAction func clickShakeSwitchEvent(_ sender: UISwitch) {
         
         YFShakeDataManager.alterShakeStatus(status: sender.isOn)
+        if sender.isOn{
+        
+            let alertVC = UIAlertController.init(title: "提示", message: "如果打开震动后没有效果，请走此步骤打开震动:\n手机--设置--声音--响铃模式震动", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction.init(title: "确 定", style: .cancel, handler: { (alert) in
+                
+            }))
+            
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
 
     
@@ -82,6 +92,8 @@ class YFSetViewController: UITableViewController,SKStoreProductViewControllerDel
     
     func appStore(){
         
+        loadActivityView()
+        
         let storeVC:SKStoreProductViewController = SKStoreProductViewController.init()
         storeVC.delegate = self
         storeVC .loadProduct(withParameters: [SKStoreProductParameterITunesItemIdentifier:"1270649612"]) { (result, error) in
@@ -98,6 +110,7 @@ class YFSetViewController: UITableViewController,SKStoreProductViewControllerDel
                 
                 self.present(alertVC, animated: true, completion: nil)
             }
+            self.dissActivityView()
         }
     }
     
@@ -105,5 +118,27 @@ class YFSetViewController: UITableViewController,SKStoreProductViewControllerDel
     public func productViewControllerDidFinish(_ viewController: SKStoreProductViewController){
     
         self .dismiss(animated: true, completion: nil)
+    }
+    
+    //家在等待框
+    func loadActivityView() ->Void{
+    
+            activityBgView = UIView.init(frame: UIScreen.main.bounds)
+            activityBgView?.backgroundColor = UIColor.clear
+            activityView?.isUserInteractionEnabled = false
+            UIApplication.shared.keyWindow?.addSubview(activityBgView!)
+            
+            activityView = UIActivityIndicatorView.init(frame: CGRect.init(x: ((activityBgView?.frame.size.width)! - 20) / 2, y: ((activityBgView?.frame.size.height)! - 20) / 2, width: 20, height: 20))
+            activityView?.activityIndicatorViewStyle = .gray
+            activityBgView?.addSubview(activityView!)
+            activityView?.startAnimating()
+    }
+    
+    func dissActivityView() -> Void{
+    
+        activityView?.stopAnimating()
+        activityBgView?.removeFromSuperview()
+        activityBgView = nil
+        activityView = nil
     }
 }

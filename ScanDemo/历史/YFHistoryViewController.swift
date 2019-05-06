@@ -33,7 +33,7 @@ class YFHistoryViewController: UIViewController,UITableViewDelegate,UITableViewD
     //表加载
     func loadtableView(){
     
-        tableView = UITableView.init(frame: CGRect.init(x: 0, y: 64, width: self.view.frame.size.width, height: self.view.frame.size.height - 64 - 50))
+        tableView = UITableView.init(frame: CGRect.init(x: 0, y:0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         tableView?.delegate = self
         tableView?.dataSource = self
         self.view.addSubview(tableView!)

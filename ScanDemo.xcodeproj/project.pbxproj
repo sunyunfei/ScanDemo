@@ -167,14 +167,14 @@
 				TargetAttributes = {
 					05F94DAA1F3BF2EC000C530B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = WH75TX47TE;
+						DevelopmentTeam = 5B45569497;
 						ProvisioningStyle = Manual;
 					};
 				};
 			};
 			buildConfigurationList = 05F94DA61F3BF2EC000C530B /* Build configuration list for PBXProject "ScanDemo" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -338,16 +338,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = WH75TX47TE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 5B45569497;
 				INFOPLIST_FILE = ScanDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fuck.world;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eg.record;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c6bf2806-50d6-41cc-bc9e-3cd017e4593a";
-				PROVISIONING_PROFILE_SPECIFIER = scanPro;
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE = "bf3ab93b-004b-4545-82a7-9d95fc387bc0";
+				PROVISIONING_PROFILE_SPECIFIER = record_deve;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -355,16 +357,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = WH75TX47TE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 5B45569497;
 				INFOPLIST_FILE = ScanDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fuck.world;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eg.record;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c6bf2806-50d6-41cc-bc9e-3cd017e4593a";
-				PROVISIONING_PROFILE_SPECIFIER = scanPro;
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE = "bf3ab93b-004b-4545-82a7-9d95fc387bc0";
+				PROVISIONING_PROFILE_SPECIFIER = record_deve;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

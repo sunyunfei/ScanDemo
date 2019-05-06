@@ -30,17 +30,19 @@ class YFScanViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
 
         setupCamera()
         //app 从后台进入前台通知
-        NotificationCenter.default.addObserver(self, selector: #selector(intoFrontWindow), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(intoFrontWindow), name:NSNotification.Name.UIApplicationDidBecomeActive , object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if (self.session != nil){
-        
             //开始采集数据
             self.session.startRunning()
-        }
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.session.stopRunning()
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,7 +61,8 @@ class YFScanViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     /// 设置扫描参数
     func setupCamera() {
             if (self.device == nil){
-                self.device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+//                self.device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+                self.device = AVCaptureDevice.default(for: .video)
                 do{
                     self.input = try AVCaptureDeviceInput.init(device: self.device)
                 }catch{
@@ -70,13 +73,13 @@ class YFScanViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                 self.output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
                 
                 self.session = AVCaptureSession.init()
-                self.session.canSetSessionPreset(AVCaptureSessionPresetHigh)
+                self.session.canSetSessionPreset(AVCaptureSession.Preset.high)
                 if self.session.canAddInput(self.input){
                     self.session .addInput(self.input)
                     self.canOpen = true
                 }else{
                     DispatchQueue.main.async {
-                        let alertVC = UIAlertController.init(title: "提示", message: "打开相机全县", preferredStyle: .alert)
+                        let alertVC = UIAlertController.init(title: "提示", message: "打开相机权限", preferredStyle: .alert)
                         alertVC.addAction(UIAlertAction.init(title: "确定", style: .default, handler: { (alert) in
                             
                             //跳转到设置页  Setting—prefs:root=INTERNET_TETHERING
@@ -92,10 +95,10 @@ class YFScanViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                         self.session.addOutput(self.output)
                     }
                     // 只支持二维码
-                    self.output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
+                    self.output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
                     
                     self.preview = AVCaptureVideoPreviewLayer(session: self.session)
-                    self.preview.videoGravity = AVLayerVideoGravityResizeAspectFill
+                    self.preview.videoGravity = AVLayerVideoGravity.resizeAspectFill
                     DispatchQueue.main.async {
                         self.preview.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
                         self.view.layer.insertSublayer(self.preview, at: 0)
@@ -113,7 +116,7 @@ class YFScanViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         var strValue:String = ""
         if metadataObjects.count>0{
             let obj:AVMetadataMachineReadableCodeObject = metadataObjects.first as! AVMetadataMachineReadableCodeObject
-            strValue = obj.stringValue
+            strValue = obj.stringValue ?? ""
         }
         
         self.session.stopRunning()
@@ -174,7 +177,7 @@ class YFScanViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     
     //进入前台通知方法
-    func intoFrontWindow(){
+    @objc func intoFrontWindow(){
     
         self.session.startRunning()
     }
