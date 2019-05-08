@@ -62,12 +62,18 @@ class YFSetViewController: UITableViewController,SKStoreProductViewControllerDel
             clickShakeSwitchEvent(shakeSwitch)
             break
         case 1:
+            //积分
+            break
+        case 2:
+            //协议
+            break;
+        case 3:
             //反馈
             let email = "1035044809@qq.com"
             let url = NSURL.init(string: "mailto:\(email)")
             UIApplication.shared.openURL(url! as URL)
-            break
-        case 2:
+            break;
+        case 4:
             //商店评价
             appStore()
             break;
