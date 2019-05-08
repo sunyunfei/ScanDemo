@@ -62,7 +62,7 @@ class YFScanViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     func setupCamera() {
             if (self.device == nil){
 //                self.device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-                self.device = AVCaptureDevice.default(for: .video)
+                self.device = AVCaptureDevice.default(for: AVMediaType.video)
                 do{
                     self.input = try AVCaptureDeviceInput.init(device: self.device)
                 }catch{
@@ -72,7 +72,7 @@ class YFScanViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                 self.output = AVCaptureMetadataOutput.init()
                 self.output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
                 
-                self.session = AVCaptureSession.init()
+                self.session = AVCaptureSession()
                 self.session.canSetSessionPreset(AVCaptureSession.Preset.high)
                 if self.session.canAddInput(self.input){
                     self.session .addInput(self.input)
@@ -110,9 +110,8 @@ class YFScanViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         
     }
     
-    
     //二维码扫描结果代理
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         var strValue:String = ""
         if metadataObjects.count>0{
             let obj:AVMetadataMachineReadableCodeObject = metadataObjects.first as! AVMetadataMachineReadableCodeObject
@@ -123,7 +122,7 @@ class YFScanViewController: UIViewController,AVCaptureMetadataOutputObjectsDeleg
         
         print(strValue)
         //判断扫描出来的结果是不是网址
-       let regulaStr = "((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
+        let regulaStr = "((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
         
         let numberPre = NSPredicate(format: "SELF MATCHES %@", regulaStr)
         let isUrl = numberPre.evaluate(with: strValue)
