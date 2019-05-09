@@ -1,0 +1,32 @@
+PODS:
+  - BmobSDK (2.3.1)
+  - IAPHelper (1.1)
+  - mob_smssdk (3.2.3):
+    - MOBFoundation
+  - MOBFoundation (3.2.2)
+  - Toast-Swift (5.0.0)
+
+DEPENDENCIES:
+  - BmobSDK
+  - IAPHelper
+  - mob_smssdk
+  - Toast-Swift (~> 5.0.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - BmobSDK
+    - IAPHelper
+    - mob_smssdk
+    - MOBFoundation
+    - Toast-Swift
+
+SPEC CHECKSUMS:
+  BmobSDK: e0f9e4b451233a80af63a8ae4f2d239474bf567b
+  IAPHelper: fd74f53b0ac142eed085777b88b86a11746a2dd4
+  mob_smssdk: cdb6a31d4fd4667ed928e2eca03f21ad89ebc05c
+  MOBFoundation: b5ff4038ddb9a0f06b685b86408f905a10aa147c
+  Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
+
+PODFILE CHECKSUM: 5b8914a0066e0ec74a794e76d3d10608a544a50e
+
+COCOAPODS: 1.6.0

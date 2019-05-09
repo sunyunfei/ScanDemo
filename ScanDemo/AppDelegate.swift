@@ -12,10 +12,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        SMSSDK.enableAppContactFriends(false)
+        Bmob.register(withAppKey: "f8079872d3a31d22a456103b2f5903f0")
+        IntegralTool.share().requestIntegral()
         return true
     }
 

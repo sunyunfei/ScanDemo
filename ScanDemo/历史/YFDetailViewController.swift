@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Toast_Swift
 class YFDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     var urlModel:YFDataModel?
@@ -37,7 +37,7 @@ class YFDetailViewController: UIViewController,UITableViewDelegate,UITableViewDa
     //表代理
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,10 +54,15 @@ class YFDetailViewController: UIViewController,UITableViewDelegate,UITableViewDa
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
             return cell
-        }else{
+        }else if indexPath.section == 1{
         
             let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = "复制到剪切板"
+            return cell
+        }else{
+            
+            let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text = "保存到后台"
             return cell
         }
     }
@@ -96,7 +101,7 @@ class YFDetailViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 
                 self.present(alertVC, animated: true, completion: nil)
             }
-        }else{
+        }else if indexPath.section == 1{
         
             //复制到剪切板
             UIPasteboard.general.string = urlModel?.urlStr
@@ -106,6 +111,22 @@ class YFDetailViewController: UIViewController,UITableViewDelegate,UITableViewDa
             }))
             
             self.present(alertVC, animated: true, completion: nil)
+        }else{
+            
+            //保存到后台
+            self.view.makeToastActivity(.center)
+            YFHistoryBmobTool.saveContent((urlModel?.urlStr)!, status: (urlModel?.urlStatus)!, success: {
+                
+                DispatchQueue.main.async {
+                    self.view.hideToastActivity()
+                    self.view.makeToast("保存成功", duration: 2.0, position: .center)
+                }
+            }) {
+                DispatchQueue.main.async {
+                    self.view.hideToastActivity()
+                    self.view.makeToast("保存成功，请重试", duration: 2.0, position: .center)
+                }
+            }
         }
     }
     

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,16 +21,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1502431449" translatesAutoresizingMaskIntoConstraints="NO" id="Dsh-cI-xrp">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dsh-cI-xrp">
+                                <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Dsh-cI-xrp" secondAttribute="bottom" id="iG0-XI-KgV"/>
-                            <constraint firstItem="Dsh-cI-xrp" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="kaF-eZ-ay8"/>
-                            <constraint firstAttribute="trailing" secondItem="Dsh-cI-xrp" secondAttribute="trailing" id="lO2-3O-6WM"/>
-                            <constraint firstItem="Dsh-cI-xrp" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="v1H-T9-er4"/>
+                            <constraint firstItem="Dsh-cI-xrp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="YG7-dc-2t4"/>
+                            <constraint firstItem="Dsh-cI-xrp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Zzv-aV-OFc"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1502431449" width="500" height="500"/>
+        <image name="erweima.png" width="200" height="200"/>
     </resources>
 </document>

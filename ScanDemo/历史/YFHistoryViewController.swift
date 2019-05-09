@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Toast_Swift
 class YFHistoryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     var tableView:UITableView?
@@ -28,6 +28,36 @@ class YFHistoryViewController: UIViewController,UITableViewDelegate,UITableViewD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    //同步后台数据
+    @IBAction func clickSyncBtn(_ sender: Any) {
+        
+        self.view.makeToastActivity(.center)
+        YFHistoryBmobTool.obtainContent({ (array) in
+            
+            DispatchQueue.main.async {
+                self.view.hideToastActivity()
+                
+                for index in 0..<(array.count) {
+                    
+                    let model1:YFContentModel = array[index] as! YFContentModel
+                    let model:YFDataModel = YFDataModel.init()
+                    model.urlStr = model1.content
+                    model.urlStatus = model1.status
+                    self.dataArray?.append(model)
+                }
+                
+                self.tableView?.reloadData()
+                self.view.makeToast("同步成功", duration: 2.0, position: .center)
+            }
+        }) {
+            
+            DispatchQueue.main.async {
+                self.view.hideToastActivity()
+                self.view.makeToast("同步失败，请重试", duration: 2.0, position: .center)
+            }
+        }
     }
     
     //表加载
@@ -76,12 +106,26 @@ class YFHistoryViewController: UIViewController,UITableViewDelegate,UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
+        if IntegralTool.share().integral <= 0 {
+            
+            self.view.makeToast("尊敬的用户，您没有足够的金币去查看详细信息，请购买后再来查看", duration: 2.0, position: .center)
+            return
+        }
         
-        self.hidesBottomBarWhenPushed =  true
-        let detailVC:YFDetailViewController = YFDetailViewController()
-        detailVC.urlModel = dataArray?[indexPath.row]
-        self.navigationController?.pushViewController(detailVC, animated: true)
-        self.hidesBottomBarWhenPushed = false
+        let alertVC:UIAlertController = UIAlertController.init(title: "提示", message: "您将消耗一个金币查看此条数据的详细信息", preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction.init(title: "确定", style: .default, handler: { (a) in
+            IntegralTool.share().integral = IntegralTool.share().integral - 1
+            IntegralTool.share().submitIntegral()
+            self.hidesBottomBarWhenPushed =  true
+            let detailVC:YFDetailViewController = YFDetailViewController()
+            detailVC.urlModel = self.dataArray?[indexPath.row]
+            self.navigationController?.pushViewController(detailVC, animated: true)
+            self.hidesBottomBarWhenPushed = false
+            
+        }))
+        
+        alertVC.addAction(UIAlertAction.init(title: "再想想", style: .cancel, handler: nil))
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     //删除代理

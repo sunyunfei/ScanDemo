@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">二维码扫描服务协议</h1>
+
+<h3 id="toc_1">1.服务协议的确认和接纳</h3>
+
+<p>活动行是由二维码扫描所有人拥有所有权与经营权产品。用户在接受活动行的服务之前，请务必仔细阅读本条款并同意本声明。访问者访问本网站或通过各类方式使用本网站的行为，都将被视为是对本声明全部内容的无异议的认可。</p>
+
+<p>1.1 用户直接或间接通过各类方式（如站外API引用等）产生与本网站相关的行为时，都将被视为已无条件接受本声明所涉及的全部内容；若用户对本声明的任何条款有异议，请停止使用活动行所提供的全部服务。</p>
+
+<p>1.2 当用户使用活动行的服务时，需遵守中国的法律法规并保证信息的真实性，同时应当恪守以下承诺：</p>
+
+<p>1)活动行在修改条款时不再另行通知用户，用户可随时通过活动行网站浏览最新服务协议条款。用户只有在同意遵守相关法律法规和本协议时，才有权使用活动行的服务，无论用户是否有意访问或使用此服务。</p>
+
+<p>2)如果用户不同意活动行对协议相关条款的修改，则有权停止使用服务。如果继续使用服务，则视为已接受活动行最新服务协议条款。</p>
+
+<p>3)活动行仅对用户的信息与资料进行形式审查，不进行实质性审查（实质性审查包括但不限于鉴别、核实任何登记资料的真实性、正确性以及是否为最新资料的审查）对此所产生的纠纷活动行不承担过错责任。</p>
+
+<p>4)用户有保证其信息和资料详尽、准确并对其及进行时更改的义务。</p>
+
+<p>5)用户有义务在其注册信息发生变动时，及时更新相关资料以保证在使用该信息时的准确性和合法性。</p>
+
+<h3 id="toc_2">2.用户使用规则</h3>
+
+<p>2.1 用户有义务保管好个人账号的相关信息并对以其进行的所有行为负法律责任。用户不应将其账号、密码转让或借予他人使用。因黑客行为或用户的保管疏忽导致账号、密码外泄，活动行不承担任何责任。</p>
+
+<p>2.2 用户在使用活动行的服务时，须向活动行提供真实资料并及时更新。活动行会根据用户的权限设置对用户资料的信息进行保密。</p>
+
+<p>2.3 用户同意接受活动行通过电子邮件、短信或其他方式向用户发送活动通知及其相关信息。</p>
+
+<p>2.4 用户保证对其通过活动行服务发布到网站上的内容拥有完整的合法的知识产权，保证活动行使用该内容不违反国家的法律法规，也不侵犯第三方的合法权益或承担任何义务。用户承诺上传的内容不涉及侵犯他人著作权、商标、名誉、隐私及其他一切违法内容。用户应对其所提供内容因形式、内容及授权的不完善、不合法所造成的一切后果承担完全责任。</p>
+
+<p>2.5 用户承诺遵循中华人民共和国有关互联网使用以及金融支付的的法律法规，不从事洗钱、诈骗、以及其他任何破坏社会主义经济秩序的活动；用户使用本服务的行为若有任何违反国家法律法规或侵犯第三方的合法权益时，活动行将保留向公安机关以及国家有关监管部门举报的权利。</p>
+
+<p>2.6 用户在使用活动行服务期间，本协议将保持完整的效力。如果用户所发布的活动与法律相抵触或者不符合本协议，活动行可以在不发出任何通知的情况下，随时终止用户的注册用户资格。</p>
+
+<h3 id="toc_3">3.隐私保护</h3>
+
+<p>3.1 活动行在用户使用其服务时可能获取的信息：</p>
+
+<p>3.1 用户的个人信息将在下述情况下部分或全部被披露：
+1)经用户同意，向第三方披露；
+2)根据有关法律规定，或应行政、司法机构的要求，向第三方或者行政、司法机构披露；
+3)如果用户出现违反中国有关法律或者网站政策的情况，需要向第三方披露；
+4)为提供用户所要求的商品和服务，而必须和第三方分享用户的个人信息；
+5)其他活动行根据法律或者网站政策认为必要的披露。</p>
+
+<p>3.2 请用户妥善保管账户及密码信息。如果用户发现个人信息泄密，尤其是活动行的账户和密码泄露，请立即联络活动行客服，以便活动行采取相应措施。</p>
+
+<h3 id="toc_4">4.服务内容介绍</h3>
+
+<p>4.1 网络信息服务：指活动主办方根据本协议的规定使用活动行发布活动信息、作为主办方和参与者确认票种交易信息、用户参加活动行的有关活动以及其他由活动行同意提供的信息服务。</p>
+
+<p>4.2 活动行平台群发信息服务：指活动行平台为商业提供的活动推广和通知邀请等服务。</p>
+
+<p>4.3 其他服务：包括但不限于商业推广、广告等服务，由协议方在补充协议中确定。用户在此同意活动行在任何情况下都无需向其或第三方在传播过程中的不准确或疏漏而导致的损害承担赔偿责任。</p>
+
+<h3 id="toc_5">5.知识产权</h3>
+
+<p>5.1 活动行提供的服务中所包含的任何文字、图片资料均受相关知识产权法律的保护，未经相关权利人同意，上述资料均不得在任何渠道改写或发布。活动行不对上述资料产生过程中的不准确予以赔偿并负责。</p>
+
+<p>5.2 本服务的相关软件含有受法律保护的专有保密资料。未经活动行或广告商明示授权，用户不得修改、兜售、散布本服务或软件的任何部分。用户同意将通过由活动行所提供的界面而非任何其它途径使用本服务。</p>
+
+<p>5.3 用户在活动行发布的内容应保证其为著作权人或已取得合法授权，并且该内容不会侵犯任何第三方的合法权益，用户同意授予活动行所有上述内容在全球范围内的免费、不可撤销的的使用权许可，据该许可活动行将有权以展示、推广及其他不为我国法律所禁止的方式使用前述内容。</p>
+
+<h3 id="toc_6">6.禁止发布的内容</h3>
+
+<p>6.1 请用户谨慎选择发布在活动行平台的信息，根据相关法律法规，任何组织和个人都不得利用活动行发布以下内容：
+1)反对宪法所确定的基本原则的；
+2)危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；
+3)损害国家荣誉和利益的；
+4)煽动民族仇恨、民族歧视，破坏民族团结的；
+5)破坏国家宗教政策，宣扬邪教和封建迷信的；
+6)散布谣言，扰乱社会秩序，破坏社会稳定的；
+7)散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；
+8)侮辱或者诽谤他人，侵害他人合法权益的；
+9)含有法律、行政法规禁止的其他内容的信息。
+如果用户知道任何人违反上述规定，请直接联系活动行客服。活动行不对任何用户提供的资料承担责任。</p>
+
+<p>6.风险与免责
+用户通过本网站与广告商或其他第三方进行任何形式的通讯或商业往来，或参与活动，包含相关服务的付款，以及达成的其它任何条款，完全为用户与广告商或其他第三方之间之行为。用户因前述任何交易或前述广告商及其他第三方而遭受的任何性质的损失或损害，活动行对此不负任何法律责任。
+6.1 基于互联网的开放性和社交网络服务的传播特殊性，活动行特别提醒用户谨慎注意以下风险：
+1)本服务仅提供在线活动管理平台，用户应当对其他用户使用本服务所发布的内容进行独立判断并承担相应风险，用户了解并确认，活动行不对本服务用户之间的纠纷承担任何责任。
+2)用户在使用本服务过程中所发布的内容有可能会被第三方修改或做其他用途，脱离用户的预期和控制，用户必须充分意识此类风险的存在，活动行对由此产生的纠纷不予负责。
+3)请用户切勿在使用本服务时透露任何涉及财产、本服务账号及密码等重要信息，否则，由此带来的损失由用户自行承担。</p>
+
+<p>6.2 在法律法规所允许的限度内，因使用活动行服务而引起的任何损害或经济损失，活动行承担的全部责任均不超过用户所购买的与该索赔有关的服务价格。这些责任限制条款将在法律所允许的最大限度内适用，并在用户资格被撤销或终止后仍继续有效。</p>
+
+<h3 id="toc_7">7.适用的法律和管辖权</h3>
+
+<p>7.1 用户同意遵守中华人民共和国相关法律法规的所有规定，并对其在使用本服务过程中产生的结果承担全部责任。同时如果活动行有理由认为用户有违反国家法律法规法人行为，活动行可在任何时候不经事先通知终止向用户提供服务。</p>
+
+<p>7.2 用户因本协议产生的争议，均应依照中华人民共和国法律予以处理，并由艾科创意信息技术有限公司所在地的人民法院提起诉讼。</p>
+
+<h3 id="toc_8">8.其他</h3>
+
+<p>8.1 若用户对本声明的任何条款有异议，请停止使用活动行所提供的全部服务。活动行修改条款时不再另行通知用户，如果用户继续使用服务，则视为用户接受活动行最新服务协议条款。</p>
+
+<p>8.2 本协议的成立、生效、履行、解释及纠纷解决，适用中华人民共和国大陆地区法律（不包括冲突法）。</p>
+
+<p>8.3 若用户和活动行之间发生任何纠纷或争议，首先应友好协商解决；协商不成的，用户同意将纠纷或争议提交艾科创意信息技术有限公司所在地的人民法院管辖。</p>
+
+<p>8.4 本协议所有条款的标题仅为阅读方便，本身并无实际涵义，不能作为本协议涵义解释的依据。</p>
+
+<p>8.5 本协议条款无论因何种原因部分无效或不可执行，其余条款仍有效，对双方具有约束力。</p>
+
+<p>8.6 本服务协议的最终解释权归二维码扫描拥有人所有。</p>
+
+
+
+
+</body>
+
+</html>

@@ -10,6 +10,9 @@ import UIKit
 import StoreKit
 class YFSetViewController: UITableViewController,SKStoreProductViewControllerDelegate {
 
+    @IBOutlet weak var integralLabel: UILabel!
+    @IBOutlet weak var footView: UIView!
+    @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var shakeLabel: UILabel!//提示是否震动label
     @IBOutlet weak var shakeSwitch: UISwitch!//开关
     var activityView:UIActivityIndicatorView?
@@ -21,6 +24,12 @@ class YFSetViewController: UITableViewController,SKStoreProductViewControllerDel
 //        let dic:Dictionary = Bundle.main.infoDictionary!
 //        let versionStr = "版本号:" + (dic["CFBundleShortVersionString"]! as! String)
 //        versionLabel.text = versionStr
+        
+        loginBtn.layer.cornerRadius = 3
+        loginBtn.layer.masksToBounds = true
+        loginBtn.layer.borderWidth = 1
+        loginBtn.layer.borderColor = UIColor.red.cgColor
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -30,11 +39,44 @@ class YFSetViewController: UITableViewController,SKStoreProductViewControllerDel
         let status:Bool = YFShakeDataManager.obtainShakeStatus()
         shakeLabel.textColor = status ? UIColor.black : UIColor.lightGray
         shakeSwitch.setOn(status ? true : false, animated: true)
+        
+        //登录信息
+        if UserConfig.sharedInstance().logined {
+            
+            loginBtn.setTitle("退出登录", for: .normal)
+            loginBtn.isSelected = true
+        }else{
+            
+            loginBtn.setTitle("登录", for: .normal)
+            loginBtn.isSelected = false
+        }
+        
+        integralLabel.text = "\(IntegralTool.share().integral)"
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    //登录
+    @IBAction func clickLoginBtn(_ sender: Any) {
+        
+        if loginBtn.isSelected {
+            
+            //推出
+            UserConfig.sharedInstance().logined = false
+            UserConfig.cutoutMessage()
+            IntegralTool.share().integral = 0
+            let defaults = UserDefaults.standard
+            defaults.removeObject(forKey: "accountNum")
+            defaults.synchronize()
+        }
+        
+        let story = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = story.instantiateViewController(withIdentifier: "login")
+        let nav = UINavigationController.init(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
     }
     
     //点击震动开关
@@ -63,9 +105,26 @@ class YFSetViewController: UITableViewController,SKStoreProductViewControllerDel
             break
         case 1:
             //积分
+            //判断是否登录了
+            if !UserConfig.sharedInstance().logined{
+                let story = UIStoryboard.init(name: "Main", bundle: nil)
+                let vc = story.instantiateViewController(withIdentifier: "login")
+                let nav = UINavigationController.init(rootViewController: vc)
+                self.present(nav, animated: true, completion: nil)
+            }else{
+                let vc = YFIntegralTableViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+           
             break
         case 2:
             //协议
+            let type = indexPath.row
+            let vc:YFAgreementController = YFAgreementController()
+            vc.type = type
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
             break;
         case 3:
             //反馈
